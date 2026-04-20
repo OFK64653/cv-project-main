@@ -22,7 +22,7 @@ function showMessage() {
 
 function validateForm() {
     const name = document.getElementById("name").value.trim();
-    const surname = document.getElementById("surname").value.trim();
+    const surname = document.getElementById("surname").value.trim(); // Soyismi alıyor
     const email = document.getElementById("email").value.trim();
     const message = document.getElementById("message").value.trim();
 
@@ -32,22 +32,27 @@ function validateForm() {
     error.textContent = "";
     success.textContent = "";
 
+    // 1. Boş alan kontrolü (surname buraya eklendi)
     if (name === "" || surname === "" || email === "" || message === "") {
         error.textContent = "Wszystkie pola są wymagane!";
         return false;
     }
 
+    // 2. Rakam kontrolü (surname buraya eklendi)
     const hasNumber = /\d/;
+    // HEM name HEM surname kontrol ediliyor
     if (hasNumber.test(name) || hasNumber.test(surname)) {
         error.textContent = "Imię i nazwisko nie mogą zawierać cyfr!";
         return false;
     }
 
+    // 3. Email kontrolü
     if (!email.includes("@") || !email.includes(".")) {
         error.textContent = "Niepoprawny email!";
         return false;
     }
 
+    // Eğer yukarıdaki hiçbir 'if'e girmezse buraya ulaşır:
     success.textContent = "Formularz został wysłany!";
     return false; 
 }
