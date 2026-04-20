@@ -54,4 +54,5 @@ function validateForm() {
 
     success.textContent = "Formularz został wysłany!";
     return false; 
+    
 }
