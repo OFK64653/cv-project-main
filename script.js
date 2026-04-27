@@ -1,3 +1,31 @@
+// ZAD6 (64653): fetch() ile data.json'dan veri çekme
+fetch('data.json')
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+
+        var listaUmiejetnosci = document.getElementById('lista-umiejetnosci');
+        data.umiejetnosci.forEach(function(umiejetnosc) {
+            var li = document.createElement('li');
+            li.textContent = umiejetnosc;
+            listaUmiejetnosci.appendChild(li);
+        });
+
+        var listaProjektow = document.getElementById('lista-projektow');
+        data.projekty.forEach(function(projekt) {
+            var li = document.createElement('li');
+            li.innerHTML = '<strong>' + projekt.nazwa + '</strong> – ' + projekt.opis;
+            listaProjektow.appendChild(li);
+        });
+
+    })
+    .catch(function(error) {
+        console.error('Błąd podczas pobierania danych z JSON:', error);
+    });
+
+// --- ZAD4 ve ZAD5'ten gelen fonksiyonlar ---
+
 function toggleInfo() {
     const section = document.getElementById("extra-info");
     section.style.display =
