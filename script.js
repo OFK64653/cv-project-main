@@ -28,7 +28,6 @@ fetch('data.json')
     });
 
 
-
 document.addEventListener("DOMContentLoaded", function () {
     pokazZadania();
 });
@@ -64,7 +63,6 @@ function pokazZadania() {
 
         var btn = document.createElement("button");
         btn.textContent = "Usuń";
-
         btn.style.marginLeft = "10px";
 
         btn.onclick = function () {
@@ -85,7 +83,6 @@ function usunZadanie(index) {
 
     pokazZadania();
 }
-
 
 function toggleInfo() {
     const section = document.getElementById("extra-info");
@@ -136,6 +133,28 @@ function validateForm() {
         return false;
     }
 
-    success.textContent = "Formularz został wysłany!";
+    // 🔥 POST request (ZAD8)
+    fetch("http://localhost:3001/messages", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: name,
+            surname: surname,
+            email: email,
+            message: message
+        })
+    })
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        success.textContent = "Dane zostały zapisane na serwerze!";
+    })
+    .catch(function() {
+        error.textContent = "Błąd podczas wysyłania danych!";
+    });
+
     return false;
 }

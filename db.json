@@ -1,0 +1,12 @@
+{
+  "messages": [
+    {
+      "name": "Omer",
+      "surname": "Kaya",
+      "email": "omerfrkyaa@gmail.com",
+      "message": "hi",
+      "id": "UvxzFH7KYR4"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
